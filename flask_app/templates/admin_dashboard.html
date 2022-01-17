@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/">Public Website</a>
+    <a href="/admin/tempkey">Admin Dashboard</a>
+    <div>
+        <table>
+            <tr>
+                <button onclick="location.href='/admin/tempkey/completed_requests'">Completed Requests</button>
+                <button onclick="location.href='/admin/tempkey/spam_requests'">Spam Requests</button>
+            </tr>
+            <tr><h2>Catering</h2></tr>
+            {% for request in requests %}
+                {% if request.type == "Catering" %}
+                    <tr>
+                        {% if request.company != undefined %}
+                            <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                                {{ request.company }}
+                            </a></p>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Spam">
+                                <input type="submit" value="Spam">
+                            </form>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Complete">
+                                <input type="submit" value="Complete">
+                            </form>
+                        {% else %}
+                            <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                                {{ request.first_name }} {{ request.last_name }}
+                            </a></p>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Spam">
+                                <input type="submit" value="Spam">
+                            </form>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Complete">
+                                <input type="submit" value="Complete">
+                            </form>
+                        {% endif %}
+                        <p>
+                            {{ request.start }} - {{ request.end }}
+                        </p>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        <table>
+            <tr><h2>Contact</h2></tr>
+            {% for request in requests %}
+                {% if request.type == "Contact" %}
+                    <tr>
+                        {% if request.company != undefined %}
+                            <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                                {{ request.company }}
+                            </a></p>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Spam">
+                                <input type="submit" value="Spam">
+                            </form>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Complete">
+                                <input type="submit" value="Complete">
+                            </form>
+                            <p>
+                                {{ request.first_name }} {{ request.last_name }}
+                            </p>
+                        {% else %}
+                            <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                                {{ request.first_name }} {{ request.last_name }}
+                            </a></p>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Spam">
+                                <input type="submit" value="Spam">
+                            </form>
+                            <form action="/admin/tempkey/submit_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="{{request.type}} - Complete">
+                                <input type="submit" value="Complete">
+                            </form>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        <table>
+            <tr><h2>Menu</h2></tr>
+            <button onclick="location.href='/admin/tempkey/create/menu_item'">Create Item</button>
+            <tr><h3>Entree</h3></tr>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "entree" %}
+                    <tr>
+                        <p><a href="/admin/tempkey/menu_item_info/{{ menu_item.id }}">
+                            {{ menu_item.name }}
+                        </a></p>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr><h3>Side</h3></tr>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "side" %}
+                    <tr>
+                        <p><a href="/admin/tempkey/menu_item_info/{{ menu_item.id }}">
+                            {{ menu_item.name }}
+                        </a></p>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr><h3>Dessert</h3></tr>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "dessert" %}
+                    <tr>
+                        <p><a href="/admin/tempkey/menu_item_info/{{ menu_item.id }}">
+                            {{ menu_item.name }}
+                        </a></p>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr><h3>Drink</h3></tr>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "drink" %}
+                    <tr>
+                        <p><a href="/admin/tempkey/menu_item_info/{{ menu_item.id }}">
+                            {{ menu_item.name }}
+                        </a></p>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/">Public Website</a>
+    <a href="/admin/tempkey">Admin Dashboard</a>
+    <form action="/admin/tempkey/submit_edit_request/{{requests.id}}" method="POST">
+        <table>
+            <tr>
+                <td>Request Type:</td>
+                <td><select name="type" id="type">
+                    {% if requests.type == "Catering" %}
+                        <option value="Catering" selected>Catering</option>
+                    {% else %}
+                        <option value="Catering">Catering</option>
+                    {% endif %}
+                    {% if requests.type == "Contact" %}
+                        <option value="Contact" selected>Contact</option>
+                    {% else %}
+                        <option value="Contact">Contact</option>
+                    {% endif %}
+                </select></td>
+            </tr> <tr>
+                <td>First Name:</td>
+                <td><input type="text" name="first_name" value={{requests.first_name}}></td>
+            </tr> <tr>
+                <td>Last Name:</td>
+                <td><input type="text" name="last_name" value={{requests.last_name}}></td>
+            </tr> <tr>
+                <td>Email:</td>
+                <td><input type="email" name="email" value={{requests.email}}></td>
+            </tr> <tr>
+                <td>Phone #:</td>
+                <td><input type="tel" name="phone" value={{requests.phone}}></td>
+            </tr> <tr>
+                <td>Name Of Company:</td>
+                <td><input type="text" name="company" value={{requests.company}}></td>
+            </tr> <tr>
+                <td>Address:</td>
+                <td><input type="text" name="address" value={{requests.address}}></td>
+            </tr> <tr>
+                <td>City:</td>
+                <td><input type="text" name="city" value={{requests.city}}></td>
+            </tr> <tr>
+                <td>State:</td>
+                <td><input type="text" name="state" value={{requests.state}}></td>
+            </tr> <tr>
+                <td>Zip Code:</td>
+                <td><input type="number" name="zip" value={{requests.zip}}></td>
+            </tr> <tr>
+                <td>Number Of Guests:</td>
+                <td><input type="number" name="guestnum" value={{requests.guestnum}}></td>
+            </tr> <tr>
+                <td>Start Time & Date:</td>
+                <td><input type="datetime-local" name="start" value={{requests.start}} autocomplete="on"></td>
+            </tr> <tr>
+                <td>End Time & Date:</td>
+                <td><input type="datetime-local" name="end" value={{requests.end}} autocomplete="on"></td>
+            </tr> <tr>
+                <td>Description:</td>
+                <td><textarea name="description" cols="30" rows="10">{{requests.description}}</textarea></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit Request">
+    </form>
+</body>
+</html>

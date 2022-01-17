@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/">Public Website</a>
+    <a href="/admin/tempkey">Admin Dashboard</a>
+    <h1>{{ menu_items.name }}</h1>
+    <h2>{{ menu_items.price }}</h2>
+    <h4>{{ menu_items.category }}</h4>
+    <p>{{ menu_items.description }}</p>
+    <button onclick="location.href='/admin/tempkey/edit/menu_item/{{menu_items.id}}'">Update</button>
+    <button onclick="location.href='/admin/tempkey/delete/menu_item/{{menu_items.id}}'">Delete</button>
+</body>
+</html>

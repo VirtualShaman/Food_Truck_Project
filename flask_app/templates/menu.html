@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <h1>TK's Soul Truck</h1>
+    <div>
+        <a href="/">Home</a>
+        <a href="/form/selection">Catering/Contact Us</a>
+        <a href="/about">About Us/Location</a>
+    </div>
+            <h3>Entrées</h3>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "entree" %}
+                    <div>
+                        <h4>{{ menu_item.name }}</h4>
+                        <h4>{{ menu_item.price }}</h4>
+                    </div>
+                    <p>{{ menu_item.description }}</p>
+                {% endif %}
+            {% endfor %}
+        
+        
+            <h3>Sides</h3>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "side" %}
+                    <div>
+                        <h4>{{ menu_item.name }}</h4>
+                        <h4>{{ menu_item.price }}</h4>
+                    </div>
+                    <p>{{ menu_item.description }}</p>
+                {% endif %}
+            {% endfor %}
+        
+        
+            <h3>Desserts</h3>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "dessert" %}
+                    <div>
+                        <h4>{{ menu_item.name }}</h4>
+                        <h4>{{ menu_item.price }}</h4>
+                    </div>
+                    <p>{{ menu_item.description }}</p>
+                {% endif %}
+            {% endfor %}
+        
+        
+            <h3>Drinks</h3>
+            {% for menu_item in menu_items %}
+                {% if menu_item.category == "drink" %}
+                    <div>
+                        <h4>{{ menu_item.name }}</h4>
+                        <h4>{{ menu_item.price }}</h4>
+                    </div>
+                    <p>{{ menu_item.description }}</p>
+                {% endif %}
+            {% endfor %}
+        
+    </table>
+</body>
+</html>

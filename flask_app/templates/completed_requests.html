@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/">Public Website</a>
+    <a href="/admin/tempkey">Admin Dashboard</a>
+    <table>
+        <tr>
+            <h2>Catering</h2>
+            <button onclick="location.href='/admin/tempkey/delete/complete_catering_requests'">Delete All Catering Requests</button>
+            <button onclick="location.href='/admin/tempkey/delete/complete_contact_requests'">Delete All Contact Requests</button>
+        </tr>
+        <tr>
+            {% for request in requests %}
+                {% if request.type == "Catering - Complete" %}
+                    <tr>
+                        {% if request.company != undefined %}
+                            <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                                {{ request.company }}
+                            </a></p>
+                            <form action="/admin/tempkey/revert_completed_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="Catering">
+                                <input type="submit" value="Revert To Dashboard">
+                            </form>
+                            <button onclick="location.href='/admin/tempkey/delete/request/{{request.id}}'">Delete</button>
+                        {% else %}
+                            <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                                {{ request.first_name }} {{ request.last_name }}
+                            </a></p>
+                            <form action="/admin/tempkey/revert_completed_request_update/{{request.id}}" method="POST">
+                                <input type="hidden" name="type" value="Catering">
+                                <input type="submit" value="Revert To Dashboard">
+                            </form>
+                            <button onclick="location.href='/admin/tempkey/delete/request/{{request.id}}'">Delete</button>
+                        {% endif %}
+                        <p>
+                            {{ request.start }} - {{ request.end }}
+                        </p>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    </table>
+    <table>
+        <tr><h2>Contact</h2></tr>
+        {% for request in requests %}
+            {% if request.type == "Contact - Complete" %}
+                <tr>
+                    {% if request.company != undefined %}
+                        <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                            {{ request.company }}
+                        </a></p>
+                        <form action="/admin/tempkey/revert_completed_request_update/{{request.id}}" method="POST">
+                            <input type="hidden" name="type" value="Contact">
+                            <input type="submit" value="Revert To Dashboard">
+                        </form>
+                        <button onclick="location.href='/admin/tempkey/delete/request/{{request.id}}'">Delete</button>
+                        <p>
+                            {{ request.first_name }} {{ request.last_name }}
+                        </p>
+                    {% else %}
+                        <p><a href="/admin/tempkey/catering_info/{{ request.id }}">
+                            {{ request.first_name }} {{ request.last_name }}
+                        </a></p>
+                        <form action="/admin/tempkey/revert_completed_request_update/{{request.id}}" method="POST">
+                            <input type="hidden" name="type" value="Contact">
+                            <input type="submit" value="Revert To Dashboard">
+                        </form>
+                        <button onclick="location.href='/admin/tempkey/delete/request/{{request.id}}'">Delete</button>
+                    {% endif %}
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</body>
+</html>

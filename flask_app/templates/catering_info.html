@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/">Public Website</a>
+    <a href="/admin/tempkey">Admin Dashboard</a>
+    <h1>{{ requests.company }}</h1>
+    {% if requests.guestnum != 0 %}
+        <h2>{{ requests.guestnum }} people</h2>
+    {% else %}
+        <div></div>
+    {% endif %}
+    {% if requests.start == "1900-12-30 00:00:00" %}
+        <div></div>
+    {% elif requests.start == "" %}
+        <div></div>
+    {% else %}
+        <h2>{{ requests.start }} - {{ requests.end }}</h2>
+    {% endif %}
+    <br>
+    <p>{{ requests.first_name }} {{ requests.last_name }}</p>
+    <p>{{ requests.email }}</p>
+    <p>{{ requests.phone }}</p>
+    <p>{{ requests.address }}, {{ requests.city }}, {{ requests.state }}, {{ requests.zip }}</p>
+    <p>{{ requests.description }}</p>
+    <div>
+        <button onclick="location.href='/admin/tempkey/edit_request/{{requests.id}}'">Edit</button>
+    </div>
+</body>
+</html>

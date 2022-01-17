@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="/">Public Website</a>
+    <a href="/admin/tempkey">Admin Dashboard</a>
+    <form action="/admin/tempkey/submit_edit/menu_item/{{menu_items.id}}" method="POST">
+        <table>
+            <tr>
+                <td>Category</td>
+                <td><select name="category">
+                    {% if menu_items.category == "entree" %}
+                        <option value="entree" selected>Entree</option>
+                    {% else %}
+                        <option value="entree">Entree</option>
+                    {% endif %}
+                    {% if menu_items.category == "side" %}
+                        <option value="side" selected>Side</option>
+                    {% else %}
+                        <option value="side">Side</option>
+                    {% endif %}
+                    {% if menu_items.category == "dessert" %}
+                        <option value="dessert" selected>Dessert</option>
+                    {% else %}
+                        <option value="dessert">Dessert</option>
+                    {% endif %}
+                    {% if menu_items.category == "drink" %}
+                        <option value="drink" selected>Drink</option>
+                    {% else %}
+                        <option value="drink">Drink</option>
+                    {% endif %}
+                </select></td>
+            </tr> <tr>
+                <td>Item Name:</td>
+                <td><input type="text" name="name" value="{{menu_items.name}}"></td>
+            </tr> <tr>
+                <td>Price:</td>
+                <td><input type="number" step="any" name="price" value="{{menu_items.price}}"></td>
+            </tr> <tr>
+                <td>Description:</td>
+                <td><textarea name="description" cols="30" rows="10">{{menu_items.description}}</textarea></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit Request">
+    </form>
+</body>
+</html>
